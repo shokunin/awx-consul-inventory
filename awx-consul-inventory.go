@@ -17,7 +17,7 @@ func main() {
 
 	// Start routes
 	router.GET("/health", healthcheck.HealthCheck)
-	router.GET("/consul/:server", consul.GenInventory)
+	router.GET("/consul/:server/:inventoryname", consul.GenInventory)
 
 	// RUN rabit run
 	router.Run() // listen and serve on 0.0.0.0:8080
