@@ -2,10 +2,11 @@ package main
 
 import (
 	"awx-consul-inventory/handlers/healthcheck"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/shokunin/contrib/ginrus"
 	"github.com/sirupsen/logrus"
-	"time"
 )
 
 func main() {
