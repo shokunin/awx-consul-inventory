@@ -17,6 +17,8 @@ type Inventory struct {
 		} `json:"vars"`
 	} `json:"replaceme"`
 	Meta struct {
+		Hostvars struct {
+		} `json:"hostvars"`
 	} `json:"_meta"`
 }
 
@@ -91,6 +93,7 @@ func GenNodes(c *gin.Context) {
 		}
 
 		b := Inventory{}
+		b.Nodes.Vars.Consul = "pong"
 		for _, n := range nodes {
 			hc, _, err := ch.Node(n.Node, &api.QueryOptions{})
 			if err != nil {
