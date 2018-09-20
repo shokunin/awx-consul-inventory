@@ -20,6 +20,7 @@ func main() {
 	router.GET("/health", healthcheck.HealthCheck)
 	router.GET("/fail", awx.GetFailedHosts)
 	router.GET("/consul/:server/:inventoryname", consul.GenInventory)
+	router.GET("/nodes/:server/:inventoryname", consul.GenNodes)
 
 	// RUN rabit run
 	router.Run() // listen and serve on 0.0.0.0:8080
