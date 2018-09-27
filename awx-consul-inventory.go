@@ -1,6 +1,7 @@
 package main
 
 import (
+	"awx-consul-inventory/handlers/awx"
 	"awx-consul-inventory/handlers/consul"
 	"awx-consul-inventory/handlers/healthcheck"
 	"time"
@@ -17,7 +18,9 @@ func main() {
 
 	// Start routes
 	router.GET("/health", healthcheck.HealthCheck)
+	router.GET("/fail", awx.GetFailedHosts)
 	router.GET("/consul/:server/:inventoryname", consul.GenInventory)
+	router.GET("/nodes/:server/:inventoryname", consul.GenNodes)
 
 	// RUN rabit run
 	router.Run() // listen and serve on 0.0.0.0:8080
