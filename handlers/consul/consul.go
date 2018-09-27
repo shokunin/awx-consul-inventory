@@ -81,7 +81,7 @@ func GenNodes(c *gin.Context) {
 	consulServer := c.Param("server")
 	inventoryName := c.Param("inventoryname")
 	if checkServers(consulServer) {
-		client, err := api.NewClient(api.DefaultConfig())
+		client, err := api.NewClient(&api.Config{Address: fmt.Sprintf("%s:8500", consulServer)})
 		if err != nil {
 			panic(err)
 		}
