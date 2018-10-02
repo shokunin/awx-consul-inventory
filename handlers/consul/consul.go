@@ -45,7 +45,10 @@ func GenInventory(c *gin.Context) {
 	consulServer := c.Param("server")
 	inventoryName := c.Param("inventoryname")
 	if checkServers(consulServer) {
-		client, err := api.NewClient(&api.Config{Address: fmt.Sprintf("%s:8500", consulServer)})
+		myconf := api.DefaultNonPooledConfig()
+		myconf.Address = fmt.Sprintf("%s:8500", consulServer)
+		fmt.Println(myconf)
+		client, err := api.NewClient(myconf)
 		if err != nil {
 			panic(err)
 		}
@@ -81,7 +84,9 @@ func GenNodes(c *gin.Context) {
 	consulServer := c.Param("server")
 	inventoryName := c.Param("inventoryname")
 	if checkServers(consulServer) {
-		client, err := api.NewClient(&api.Config{Address: fmt.Sprintf("%s:8500", consulServer)})
+		myconf := api.DefaultNonPooledConfig()
+		myconf.Address = fmt.Sprintf("%s:8500", consulServer)
+		client, err := api.NewClient(myconf)
 		if err != nil {
 			panic(err)
 		}
